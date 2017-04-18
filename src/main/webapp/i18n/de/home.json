@@ -1,19 +1,18 @@
 {
     "home": {
-        "title": "Willkommen, Java Hipster!",
+        "title": "Willkommen bei Ninja Bid!",
         "subtitle": "Dies ist Ihre Hauptseite",
         "logged": {
             "message": "Sie sind als Benutzer \"{{username}}\" angemeldet."
         },
-        "question": "Wenn Sie Fragen zu JHipster haben:",
-        "link": {
-            "homepage": "JHipster Hauptseite",
-            "stackoverflow": "JHipster auf Stack Overflow",
-            "bugtracker": "JHipster Fehlereinträge",
-            "chat": "JHipster Chat",
-            "follow": "kontaktieren Sie uns mit @java_hipster auf Twitter"
+        "why": "Warum zahlen Einzelhandelspreise? Gebot abgeben:",
+        "list": {
+            "_1": "Suspendisse ipsum ligula",
+            "_2": "Etiam cursus quam eu orci",
+            "_3": "Aliquam pellentesque nunc risus",
+            "_4": "Sed mattis eros sit amet enim",
+            "_5": "Suspendisse id vehicula metus, laoreet"
         },
-        "like": "Wenn Sie JHipster mögen, vergessen Sie nicht uns einen Stern zu geben auf",
-        "github": "GitHub"
+        "cta": "Mit unseren Angeboten können Sie bis zu 89% sparen! Rabatte auf brandneue Artikel!"
     }
 }

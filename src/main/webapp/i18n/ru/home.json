@@ -1,19 +1,18 @@
 {
     "home": {
-        "title": "Добро пожаловать, Java Hipster!",
+        "title": "Добро пожаловать в ниндзя!",
         "subtitle": "Это ваша домашняя страница",
         "logged": {
             "message": "Вы вошли как пользователь \"{{username}}\"."
         },
-        "question": "Если у Вас возникли вопросы по JHipster:",
-        "link": {
-            "homepage": "JHipster домашняя страница",
-            "stackoverflow": "JHipster на Stack Overflow",
-            "bugtracker": "JHipster баг трекер",
-            "chat": "JHipster public chat room",
-            "follow": "пользователь @java_hipster в Twitter"
+        "why": "Зачем платить розничные цены? Ставку на:",
+        "list": {
+            "_1": "Suspendisse ipsum ligula",
+            "_2": "Etiam cursus quam eu orci",
+            "_3": "Aliquam pellentesque nunc risus",
+            "_4": "Sed mattis eros sit amet enim",
+            "_5": "Suspendisse id vehicula metus, laoreet"
         },
-        "like": "Если вам нравится JHipster, не забудьте дать нам звёздочку на",
-        "github": "GitHub"
+        "cta": "Вы можете сэкономить до 89% наших предложений! Скидки на новые товары!"
     }
 }
