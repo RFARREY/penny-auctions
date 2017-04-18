@@ -238,3 +238,58 @@ Social Buttons
     color: #fff;
 }
 /* jhipster-needle-css-add-main JHipster will add new css style */
+
+
+.footer {
+    padding-top: 20px;
+}
+
+#social-footer-icons li {
+    float: left;
+    margin-left: 10px;
+}
+
+#social-footer-icons li a {
+    float: left;
+    height: 23px;
+    width: 23px;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url("../images/social-icons.png");
+}
+
+#social-footer-icons #tw {
+    background-position: 0 0;
+}
+
+#social-footer-icons #tw:hover {
+    background-position: 0 -23px;
+}
+
+#social-footer-icons #fb {
+    background-position: -23px 0;
+}
+
+#social-footer-icons #fb:hover {
+    background-position: -23px -23px;
+}
+
+#social-footer-icons #rss {
+    background-position: -46px 0;
+}
+
+#social-footer-icons #rss:hover {
+    background-position: -46px -23px;
+}
+
+#social-footer-icons #plus {
+    background-position: -69px 0;
+}
+
+#social-footer-icons #plus:hover {
+    background-position: -69px -69px;
+}
+
+h1.page-header {
+    padding-bottom: 20px;
+}
