@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { MadderbidSharedModule } from '../shared';
+import { NinjabidSharedModule } from '../shared';
 
 import {
     pageState,
@@ -12,7 +12,7 @@ import {
 
 @NgModule({
     imports: [
-        MadderbidSharedModule,
+        NinjabidSharedModule,
         RouterModule.forRoot(pageState, { useHash: true })
     ],
     declarations: [
@@ -24,4 +24,4 @@ import {
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class MadderbidPageModule {}
+export class NinjabidPageModule {}
