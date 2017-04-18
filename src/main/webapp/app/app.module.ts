@@ -9,6 +9,7 @@ import { NinjabidHomeModule } from './home/home.module';
 import { NinjabidAdminModule } from './admin/admin.module';
 import { NinjabidAccountModule } from './account/account.module';
 import { NinjabidEntityModule } from './entities/entity.module';
+import { MadderbidPageModule } from './pages/page.module';
 
 import { LayoutRoutingModule } from './layouts';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
@@ -33,7 +34,8 @@ import {
         NinjabidHomeModule,
         NinjabidAdminModule,
         NinjabidAccountModule,
-        NinjabidEntityModule
+        NinjabidEntityModule,
+        MadderbidPageModule
     ],
     declarations: [
         JhiMainComponent,

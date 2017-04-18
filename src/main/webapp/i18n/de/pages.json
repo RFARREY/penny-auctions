@@ -1,0 +1,13 @@
+{
+    "pages": {
+        "privacy": {
+            "title": "Privacy Policy"
+        },
+        "terms": {
+            "title": "Terms & Conditions"
+        },
+        "faq": {
+            "title": "Frequently Asked Questions"
+        }
+    }
+}
