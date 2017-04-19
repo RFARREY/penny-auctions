@@ -4,14 +4,16 @@
         "browsehappy": "您目前使用<strong>过于老旧</strong>的浏览器, 建议您<a href=\"http://browsehappy.com/?locale=en\">升级浏览器</a>让您有更佳的上网体验.",
         "menu": {
             "home": "首页",
-            "faq": "常问问题",
+            "faq": "帮帮我",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "数据",
+                "credit": "Credit",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
                 "main": "账号",
+                "credits" : "积分",
                 "settings": "设置",
                 "password": "密码",
                 "sessions": "会话",

@@ -1,0 +1,79 @@
+<div>
+    <h2>
+        <span jhiTranslate="ninjabidApp.credit.home.title">Credits</span>
+        <button class="btn btn-primary float-right create-credit" [routerLink]="['/', { outlets: { popup: ['credit-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="ninjabidApp.credit.home.createLabel">
+            Top-Up Credits
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div *jhiHasAnyAuthority="'ROLE_ADMIN'"  class="row">
+        <div class="col-sm-12 no-padding-right">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'ninjabidApp.credit.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="credits">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span></th>
+            <th jhiSortBy="amount"><span jhiTranslate="ninjabidApp.credit.amount">Amount</span> </th>
+            <th jhiSortBy="status"><span jhiTranslate="ninjabidApp.credit.status">Status</span></th>
+            <th jhiSortBy="price"><span jhiTranslate="ninjabidApp.credit.price">Price</span></th>
+            <th jhiSortBy="timestamp"><span jhiTranslate="ninjabidApp.credit.timestamp">Timestamp</span></th>
+            <th jhiSortBy="userLogin"><span jhiTranslate="ninjabidApp.credit.user">User</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let credit of credits ;trackBy: trackId">
+                <td><a [routerLink]="['../credit', credit.id ]">{{credit.id}}</a></td>
+                <td>{{credit.amount}}</td>
+                <td jhiTranslate="{{'ninjabidApp.Status.' + credit.status}}">{{credit.status}}</td>
+                <td>{{credit.price}}</td>
+                <td>{{credit.timestamp | date:'medium'}}</td>
+                <td>
+                    {{credit.userLogin}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../credit', credit.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'credit/'+ credit.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'credit/'+ credit.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

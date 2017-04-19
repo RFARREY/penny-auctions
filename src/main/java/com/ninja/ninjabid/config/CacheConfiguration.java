@@ -43,6 +43,7 @@ public class CacheConfiguration {
             cm.createCache(com.ninja.ninjabid.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(com.ninja.ninjabid.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
             cm.createCache(com.ninja.ninjabid.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
+            cm.createCache(com.ninja.ninjabid.domain.Credit.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

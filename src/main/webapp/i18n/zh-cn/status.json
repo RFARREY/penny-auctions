@@ -1,0 +1,9 @@
+{
+    "ninjabidApp": {
+        "Status" : {
+            "null": "",
+            "paid": "paid",
+            "pending": "pending"
+        }
+    }
+}

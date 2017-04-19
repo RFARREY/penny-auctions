@@ -1,0 +1,21 @@
+{
+    "ninjabidApp": {
+        "credit" : {
+            "home": {
+                "title": "Credits",
+                "createLabel": "Top-Up Credits",
+                "buyLabel": "Purchase Credits",
+                "search": "Search for Credit Top-Ups"
+            },
+            "detail": {
+                "title": "Credit"
+            },
+            "amount": "Amount",
+            "status": "Status",
+            "price": "Price",
+            "buy": "Purchase",
+            "timestamp": "Date",
+            "user": "User"
+        }
+    }
+}

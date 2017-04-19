@@ -4,14 +4,16 @@
         "browsehappy": "Ваш браузер <strong>устарел</strong>. Пожалуйста <a href=\"http://browsehappy.com/?locale=ru\">обновите ваш браузер</a>.",
         "menu": {
             "home": "Главная",
-            "faq": "Вопросы-Ответы",
+            "faq": "Помогите",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Сущности",
+                "credit": "Credit",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
                 "main": "Профиль",
+                "credits" : "Кредиты",
                 "settings": "Настройки",
                 "password": "Пароль",
                 "sessions": "Сессии",

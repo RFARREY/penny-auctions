@@ -1,0 +1,41 @@
+
+<div *ngIf="credit">
+    <h2><span jhiTranslate="ninjabidApp.credit.detail.title">Credit</span> {{credit.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ninjabidApp.credit.amount">Amount</span></dt>
+        <dd>
+            <span>{{credit.amount}}</span>
+        </dd>
+        <dt><span jhiTranslate="ninjabidApp.credit.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ninjabidApp.Status.' + credit.status}}">{{credit.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="ninjabidApp.credit.price">Price</span></dt>
+        <dd>
+            <span>{{credit.price}}</span>
+        </dd>
+        <dt><span jhiTranslate="ninjabidApp.credit.timestamp">Timestamp</span></dt>
+        <dd>
+            <span>{{credit.timestamp | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ninjabidApp.credit.user">User</span></dt>
+        <dd>
+            {{credit.userLogin}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'credit/'+ credit.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
