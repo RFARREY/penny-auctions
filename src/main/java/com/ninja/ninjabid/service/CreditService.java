@@ -3,6 +3,8 @@ package com.ninja.ninjabid.service;
 import com.ninja.ninjabid.domain.Credit;
 import com.ninja.ninjabid.repository.CreditRepository;
 import com.ninja.ninjabid.repository.search.CreditSearchRepository;
+import com.ninja.ninjabid.security.AuthoritiesConstants;
+import com.ninja.ninjabid.security.SecurityUtils;
 import com.ninja.ninjabid.service.dto.CreditDTO;
 import com.ninja.ninjabid.service.mapper.CreditMapper;
 import org.slf4j.Logger;
@@ -64,7 +66,11 @@ public class CreditService {
     @Transactional(readOnly = true)
     public Page<CreditDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Credits");
-        Page<Credit> result = creditRepository.findAll(pageable);
+        Page<Credit> result;
+        if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN))
+             result = creditRepository.findAll(pageable);
+        else
+            result = creditRepository.findByUserIsCurrentUser(pageable);
         return result.map(credit -> creditMapper.creditToCreditDTO(credit));
     }
 
