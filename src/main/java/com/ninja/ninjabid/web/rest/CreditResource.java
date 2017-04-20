@@ -1,13 +1,17 @@
 package com.ninja.ninjabid.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.ninja.ninjabid.domain.User;
+import com.ninja.ninjabid.repository.UserRepository;
 import com.ninja.ninjabid.security.AuthoritiesConstants;
+import com.ninja.ninjabid.security.SecurityUtils;
+import com.ninja.ninjabid.security.UserUtils;
 import com.ninja.ninjabid.service.CreditService;
+import com.ninja.ninjabid.service.dto.CreditDTO;
 import com.ninja.ninjabid.web.rest.util.HeaderUtil;
 import com.ninja.ninjabid.web.rest.util.PaginationUtil;
-import com.ninja.ninjabid.service.dto.CreditDTO;
-import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,13 +25,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Credit.
@@ -42,7 +41,11 @@ public class CreditResource {
 
     private final CreditService creditService;
 
-    public CreditResource(CreditService creditService) {
+    private final UserRepository userRepository;
+
+    public CreditResource(CreditService creditService, UserRepository userRepository) {
+
+        this.userRepository = userRepository;
         this.creditService = creditService;
     }
 
@@ -60,6 +63,18 @@ public class CreditResource {
         if (creditDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new credit cannot already have an ID")).body(null);
         }
+
+        Optional<User> currentUserOptional = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
+        if (!currentUserOptional.isPresent())
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        // set the current user, we need the most secure way to do it,
+        // get it from the payment info, etc.
+        User currentUser = currentUserOptional.get();
+        if (!UserUtils.checkCreditOwnership(currentUser))
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        creditDTO.setUserId(currentUser.getId());
         CreditDTO result = creditService.save(creditDTO);
         return ResponseEntity.created(new URI("/api/credits/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

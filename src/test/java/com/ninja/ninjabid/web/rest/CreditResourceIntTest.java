@@ -5,6 +5,7 @@ import com.ninja.ninjabid.NinjabidApp;
 import com.ninja.ninjabid.domain.Credit;
 import com.ninja.ninjabid.domain.User;
 import com.ninja.ninjabid.repository.CreditRepository;
+import com.ninja.ninjabid.repository.UserRepository;
 import com.ninja.ninjabid.service.CreditService;
 import com.ninja.ninjabid.repository.search.CreditSearchRepository;
 import com.ninja.ninjabid.service.dto.CreditDTO;
@@ -61,6 +62,9 @@ public class CreditResourceIntTest {
     private static final ZonedDateTime UPDATED_TIMESTAMP = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private CreditRepository creditRepository;
 
     @Autowired
@@ -91,7 +95,7 @@ public class CreditResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        CreditResource creditResource = new CreditResource(creditService);
+        CreditResource creditResource = new CreditResource(creditService, userRepository);
         this.restCreditMockMvc = MockMvcBuilders.standaloneSetup(creditResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
