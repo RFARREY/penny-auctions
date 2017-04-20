@@ -1,6 +1,7 @@
 package com.ninja.ninjabid.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.ninja.ninjabid.security.AuthoritiesConstants;
 import com.ninja.ninjabid.service.CreditService;
 import com.ninja.ninjabid.web.rest.util.HeaderUtil;
 import com.ninja.ninjabid.web.rest.util.PaginationUtil;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -139,6 +141,7 @@ public class CreditResource {
      */
     @GetMapping("/_search/credits")
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<List<CreditDTO>> searchCredits(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Credits for query {}", query);
         Page<CreditDTO> page = creditService.search(query, pageable);
