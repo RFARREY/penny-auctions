@@ -91,7 +91,9 @@ public class CreditResource {
     @Timed
     public ResponseEntity<List<CreditDTO>> getAllCredits(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Credits");
-        Page<CreditDTO> page = creditService.findAllByRole(pageable, SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN));
+        Page<CreditDTO> page = SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)
+            ? creditService.findAll(pageable)
+            : creditService.findAllByCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/credits");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

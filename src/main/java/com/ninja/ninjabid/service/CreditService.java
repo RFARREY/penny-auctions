@@ -71,11 +71,9 @@ public class CreditService {
      *  @return the list of entities
      */
     @Transactional(readOnly = true)
-    public Page<CreditDTO> findAllByRole(Pageable pageable, boolean admin) {
+    public Page<CreditDTO> findAllByCurrentUser(Pageable pageable) {
         log.debug("Request to get all Credits");
-        Page<Credit> result = (admin) ? creditRepository.findAll(pageable) :
-                                        creditRepository.findByUserIsCurrentUser(pageable);
-
+        Page<Credit> result = creditRepository.findByUserIsCurrentUser(pageable);
         return result.map(credit -> creditMapper.creditToCreditDTO(credit));
     }
 
