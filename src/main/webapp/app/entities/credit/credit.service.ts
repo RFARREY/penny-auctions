@@ -42,10 +42,6 @@ export class CreditService {
         ;
     }
 
-    delete(id: number): Observable<Response> {
-        return this.http.delete(`${this.resourceUrl}/${id}`);
-    }
-
     search(req?: any): Observable<Response> {
         const options = this.createRequestOption(req);
         return this.http.get(this.resourceSearchUrl, options)

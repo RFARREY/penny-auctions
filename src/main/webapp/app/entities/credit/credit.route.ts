@@ -7,7 +7,6 @@ import { PaginationUtil } from 'ng-jhipster';
 import { CreditComponent } from './credit.component';
 import { CreditDetailComponent } from './credit-detail.component';
 import { CreditPopupComponent } from './credit-dialog.component';
-import { CreditDeletePopupComponent } from './credit-delete-dialog.component';
 
 import { Principal } from '../../shared';
 
@@ -35,16 +34,6 @@ export const creditPopupRoute: Routes = [
   {
     path: 'credit-new',
     component: CreditPopupComponent,
-    data: {
-        authorities: ['ROLE_USER'],
-        pageTitle: 'ninjabidApp.credit.home.title'
-    },
-    canActivate: [UserRouteAccessService],
-    outlet: 'popup'
-  },
-  {
-    path: 'credit/:id/delete',
-    component: CreditDeletePopupComponent,
     data: {
         authorities: ['ROLE_USER'],
         pageTitle: 'ninjabidApp.credit.home.title'

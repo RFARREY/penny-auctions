@@ -10,8 +10,6 @@ import {
     CreditDetailComponent,
     CreditDialogComponent,
     CreditPopupComponent,
-    CreditDeletePopupComponent,
-    CreditDeleteDialogComponent,
     creditRoute,
     creditPopupRoute,
 } from './';
@@ -31,16 +29,12 @@ const ENTITY_STATES = [
         CreditComponent,
         CreditDetailComponent,
         CreditDialogComponent,
-        CreditDeleteDialogComponent,
         CreditPopupComponent,
-        CreditDeletePopupComponent,
     ],
     entryComponents: [
         CreditComponent,
         CreditDialogComponent,
         CreditPopupComponent,
-        CreditDeleteDialogComponent,
-        CreditDeletePopupComponent,
     ],
     providers: [
         CreditService,

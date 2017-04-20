@@ -16,6 +16,7 @@ export class CreditDetailComponent implements OnInit, OnDestroy {
     private subscription: any;
     private eventSubscriber: Subscription;
 
+
     constructor(
         private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,

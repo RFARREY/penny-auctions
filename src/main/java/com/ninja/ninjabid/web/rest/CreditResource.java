@@ -96,20 +96,6 @@ public class CreditResource {
     }
 
     /**
-     * DELETE  /credits/:id : delete the "id" credit.
-     *
-     * @param id the id of the creditDTO to delete
-     * @return the ResponseEntity with status 200 (OK)
-     */
-    @DeleteMapping("/credits/{id}")
-    @Timed
-    public ResponseEntity<Void> deleteCredit(@PathVariable Long id) {
-        log.debug("REST request to delete Credit : {}", id);
-        creditService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-    }
-
-    /**
      * SEARCH  /_search/credits?query=:query : search for the credit corresponding
      * to the query.
      *

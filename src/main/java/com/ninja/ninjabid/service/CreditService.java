@@ -83,17 +83,6 @@ public class CreditService {
     }
 
     /**
-     *  Delete the  credit by id.
-     *
-     *  @param id the id of the entity
-     */
-    public void delete(Long id) {
-        log.debug("Request to delete Credit : {}", id);
-        creditRepository.delete(id);
-        creditSearchRepository.delete(id);
-    }
-
-    /**
      * Search for the credit corresponding to the query.
      *
      *  @param query the query of the search
