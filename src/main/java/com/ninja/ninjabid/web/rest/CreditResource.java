@@ -67,28 +67,6 @@ public class CreditResource {
     }
 
     /**
-     * PUT  /credits : Updates an existing credit.
-     *
-     * @param creditDTO the creditDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated creditDTO,
-     * or with status 400 (Bad Request) if the creditDTO is not valid,
-     * or with status 500 (Internal Server Error) if the creditDTO couldnt be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
-    @PutMapping("/credits")
-    @Timed
-    public ResponseEntity<CreditDTO> updateCredit(@Valid @RequestBody CreditDTO creditDTO) throws URISyntaxException {
-        log.debug("REST request to update Credit : {}", creditDTO);
-        if (creditDTO.getId() == null) {
-            return createCredit(creditDTO);
-        }
-        CreditDTO result = creditService.save(creditDTO);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, creditDTO.getId().toString()))
-            .body(result);
-    }
-
-    /**
      * GET  /credits : get all the credits.
      *
      * @param pageable the pagination information

@@ -44,15 +44,9 @@ export class CreditDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.credit.id !== undefined) {
-            this.creditService.update(this.credit)
-                .subscribe((res: Credit) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
-        } else {
-            this.creditService.create(this.credit)
-                .subscribe((res: Credit) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
-        }
+        this.creditService.create(this.credit)
+            .subscribe((res: Credit) =>
+                this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
     private onSaveSuccess(result: Credit) {

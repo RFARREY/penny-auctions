@@ -26,15 +26,6 @@ export class CreditService {
         });
     }
 
-    update(credit: Credit): Observable<Credit> {
-        const copy: Credit = Object.assign({}, credit);
-
-        copy.timestamp = this.dateUtils.toDate(credit.timestamp);
-        return this.http.put(this.resourceUrl, copy).map((res: Response) => {
-            return res.json();
-        });
-    }
-
     find(id: number): Observable<Credit> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
             const jsonResponse = res.json();

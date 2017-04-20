@@ -43,16 +43,6 @@ export const creditPopupRoute: Routes = [
     outlet: 'popup'
   },
   {
-    path: 'credit/:id/edit',
-    component: CreditPopupComponent,
-    data: {
-        authorities: ['ROLE_USER'],
-        pageTitle: 'ninjabidApp.credit.home.title'
-    },
-    canActivate: [UserRouteAccessService],
-    outlet: 'popup'
-  },
-  {
     path: 'credit/:id/delete',
     component: CreditDeletePopupComponent,
     data: {
