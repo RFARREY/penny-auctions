@@ -3,23 +3,16 @@ package com.ninja.ninjabid.service;
 import com.ninja.ninjabid.domain.Credit;
 import com.ninja.ninjabid.repository.CreditRepository;
 import com.ninja.ninjabid.repository.search.CreditSearchRepository;
-import com.ninja.ninjabid.security.AuthoritiesConstants;
-import com.ninja.ninjabid.security.SecurityUtils;
 import com.ninja.ninjabid.service.dto.CreditDTO;
 import com.ninja.ninjabid.service.mapper.CreditMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing Credit.
@@ -66,11 +59,23 @@ public class CreditService {
     @Transactional(readOnly = true)
     public Page<CreditDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Credits");
-        Page<Credit> result;
-        if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN))
-             result = creditRepository.findAll(pageable);
-        else
-            result = creditRepository.findByUserIsCurrentUser(pageable);
+        Page<Credit> result = creditRepository.findAll(pageable);
+        return result.map(credit -> creditMapper.creditToCreditDTO(credit));
+    }
+
+
+    /**
+     *  Get all the credits.
+     *
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<CreditDTO> findAllByRole(Pageable pageable, boolean admin) {
+        log.debug("Request to get all Credits");
+        Page<Credit> result = (admin) ? creditRepository.findAll(pageable) :
+                                        creditRepository.findByUserIsCurrentUser(pageable);
+
         return result.map(credit -> creditMapper.creditToCreditDTO(credit));
     }
 
