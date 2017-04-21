@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="ninjabidApp.credit.home.title">Credits</span>
-        <button *jhiHasAnyAuthority="'ROLE_USER'" class="btn btn-primary float-right create-credit" [routerLink]="['/', { outlets: { popup: ['credit-new'] } }]">
+        <button class="btn btn-primary float-right create-credit" [routerLink]="['/', { outlets: { popup: ['credit-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="ninjabidApp.credit.home.createLabel">
             Top-Up Credits
@@ -9,7 +9,7 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
-    <div class="row">
+    <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="row">
         <div class="col-sm-12 no-padding-right">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
