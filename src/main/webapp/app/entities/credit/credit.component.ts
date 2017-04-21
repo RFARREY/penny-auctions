@@ -26,6 +26,7 @@ export class CreditComponent implements OnInit, OnDestroy {
     reverse: any;
     totalItems: number;
     currentSearch: string;
+    balance: number; // current user credit balance
 
     constructor(
         private jhiLanguageService: JhiLanguageService,
@@ -44,11 +45,18 @@ export class CreditComponent implements OnInit, OnDestroy {
         };
         this.predicate = 'id';
         this.reverse = true;
+        this.balance = 0;
         this.currentSearch = activatedRoute.snapshot.params['search'] ? activatedRoute.snapshot.params['search'] : '';
         this.jhiLanguageService.setLocations(['credit', 'status']);
     }
 
     loadAll() {
+        // get the credit balance we will probably need it globally
+        this.creditService.balance().subscribe(
+            (res: Response) => this.balance = parseInt(res.json()),
+            (res: Response) => this.onError(res.json())
+        );
+
         if (this.currentSearch) {
             this.creditService.search({
                 query: this.currentSearch,

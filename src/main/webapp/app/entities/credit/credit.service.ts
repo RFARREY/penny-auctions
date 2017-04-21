@@ -10,10 +10,11 @@ export class CreditService {
 
     private resourceUrl = 'api/credits';
     private resourceSearchUrl = 'api/_search/credits';
+    private resourceBalanceUrl = 'api/account/balance';
 
     constructor(private http: Http, private dateUtils: DateUtils) { }
 
-    // todo credits remove this
+    // todo remove, this should come from payments gateway, for now we mock it from front-end.
     create(credit: Credit): Observable<Credit> {
         const copy: Credit = Object.assign({}, credit);
         credit.timestamp = "2017-01-01T01:00";
@@ -49,6 +50,12 @@ export class CreditService {
         ;
     }
 
+    // todo implement some angular caching solution, or just a service to hold the value
+    // todo update cache value when a bid is made or a credits purchase
+    balance(): Observable<Response> {
+        return this.http.get(this.resourceBalanceUrl)
+            .map((res: any) => res)
+    }
 
     private convertResponse(res: any): any {
         const jsonResponse = res.json();

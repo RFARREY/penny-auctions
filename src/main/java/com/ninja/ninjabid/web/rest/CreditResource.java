@@ -130,5 +130,17 @@ public class CreditResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    /**
+     * GET  /account/balance : get the current open sessions.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the user sum balance from the db
+     */
+    @GetMapping("/account/balance")
+    @Timed
+    public ResponseEntity<Integer> getBalance() {
+        return new ResponseEntity<>(
+            creditService.getBalance(SecurityUtils.getCurrentUserLogin()),
+            HttpStatus.OK);
+    }
 
 }

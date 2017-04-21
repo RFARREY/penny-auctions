@@ -1,6 +1,8 @@
 <div>
     <h2>
-        <span jhiTranslate="ninjabidApp.credit.home.title">Credits</span>
+        <span jhiTranslate="ninjabidApp.credit.home.balance" translateValues="{balance: '{{balance}}'}">
+            You have ${{balance}} Credits
+        </span>
         <button class="btn btn-primary float-right create-credit" [routerLink]="['/', { outlets: { popup: ['credit-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="ninjabidApp.credit.home.createLabel">

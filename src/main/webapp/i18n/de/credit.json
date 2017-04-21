@@ -3,6 +3,7 @@
         "credit" : {
             "home": {
                 "title": "Credits",
+                "balance": "You have {{balance}} Credits",
                 "createLabel": "Top-Up Credits",
                 "buyLabel": "Top-Up Credits",
                 "search": "Search for Credit Top-Ups"

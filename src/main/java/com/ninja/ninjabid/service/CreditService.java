@@ -104,4 +104,16 @@ public class CreditService {
         Page<Credit> result = creditSearchRepository.search(queryStringQuery(query), pageable);
         return result.map(credit -> creditMapper.creditToCreditDTO(credit));
     }
+
+    /**
+     * Balance for the user credit transactions.
+     *
+     *  @return balance
+     */
+    @Transactional(readOnly = true)
+    public Integer getBalance(String userLogin) {
+        log.debug("Request to add up the balance {}", userLogin);
+        return creditRepository.getBalanceByUser(userLogin);
+    }
+
 }
