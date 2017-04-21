@@ -40,6 +40,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.ninja.ninjabid.domain.enumeration.Status;
+
+// todo tests for balance
+
 /**
  * Test class for the CreditResource REST controller.
  *
