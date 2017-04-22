@@ -45,7 +45,7 @@
                 <td><a [routerLink]="['../credit', credit.id ]">{{credit.id}}</a></td>
                 <td>{{credit.amount}}</td>
                 <td jhiTranslate="{{'ninjabidApp.Status.' + credit.status}}">{{credit.status}}</td>
-                <td>${{credit.price | currency:'USD':true }}</td>
+                <td>{{credit.price | currency:'USD':true:'1.2-2' }}</td>
                 <td>{{credit.timestamp | date:'medium'}}</td>
                 <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
                     {{credit.userLogin}}
