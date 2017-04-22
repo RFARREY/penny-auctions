@@ -1,5 +1,5 @@
 
-const enum AuctionStatus {
+export const enum AuctionStatus {
     'live',
     'upcoming',
     'closed'

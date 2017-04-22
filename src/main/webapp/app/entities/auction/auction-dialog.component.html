@@ -13,20 +13,6 @@
                    [(ngModel)]="auction.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ninjabidApp.auction.status" for="field_status">Status</label>
-            <select class="form-control" name="status" [(ngModel)]="auction.status" id="field_status"  required>
-                <option value="live" jhiTranslate="ninjabidApp.AuctionStatus.live">live</option>
-                <option value="upcoming" jhiTranslate="ninjabidApp.AuctionStatus.upcoming">upcoming</option>
-                <option value="closed" jhiTranslate="ninjabidApp.AuctionStatus.closed">closed</option>
-            </select>
-            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.status?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="ninjabidApp.auction.item_name" for="field_item_name">Item Name</label>
             <input type="text" class="form-control" name="item_name" id="field_item_name"
                 [(ngModel)]="auction.item_name"

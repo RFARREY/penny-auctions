@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { Auction } from './auction.model';
+import { Auction, AuctionStatus } from './auction.model';
 import { DateUtils } from 'ng-jhipster';
 @Injectable()
 export class AuctionService {
@@ -15,6 +15,7 @@ export class AuctionService {
     create(auction: Auction): Observable<Auction> {
         const copy: Auction = Object.assign({}, auction);
         copy.starting_at = this.dateUtils.toDate(auction.starting_at);
+        copy.status = AuctionStatus.upcoming;
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
