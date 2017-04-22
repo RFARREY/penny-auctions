@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager, JhiLanguageService } from 'ng-jhipster';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Account, LoginModalService, Principal } from '../shared';
 
@@ -20,7 +22,9 @@ export class HomeComponent implements OnInit {
         private jhiLanguageService: JhiLanguageService,
         private principal: Principal,
         private loginModalService: LoginModalService,
-        private eventManager: EventManager
+        private eventManager: EventManager,
+        private router: Router,
+        private location: Location,
     ) {
         this.jhiLanguageService.setLocations(['home']);
     }
@@ -30,12 +34,16 @@ export class HomeComponent implements OnInit {
             this.account = account;
         });
         this.registerAuthenticationSuccess();
+
+        if(this.isAuthenticated())
+            this.redirectAuthenticated();
     }
 
     registerAuthenticationSuccess() {
         this.eventManager.subscribe('authenticationSuccess', (message) => {
             this.principal.identity().then((account) => {
                 this.account = account;
+                this.redirectAuthenticated()
             });
         });
     }
@@ -46,5 +54,10 @@ export class HomeComponent implements OnInit {
 
     login() {
         this.modalRef = this.loginModalService.open();
+    }
+
+    redirectAuthenticated(){
+        this.location.replaceState('/');
+        this.router.navigate(['/auction']); // redirect to auction
     }
 }
