@@ -1,6 +1,7 @@
 package com.ninja.ninjabid.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.ninja.ninjabid.security.AuthoritiesConstants;
 import com.ninja.ninjabid.service.AuctionService;
 import com.ninja.ninjabid.web.rest.util.HeaderUtil;
 import com.ninja.ninjabid.web.rest.util.PaginationUtil;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -37,7 +39,7 @@ public class AuctionResource {
     private final Logger log = LoggerFactory.getLogger(AuctionResource.class);
 
     private static final String ENTITY_NAME = "auction";
-        
+
     private final AuctionService auctionService;
 
     public AuctionResource(AuctionService auctionService) {
@@ -133,12 +135,13 @@ public class AuctionResource {
      * SEARCH  /_search/auctions?query=:query : search for the auction corresponding
      * to the query.
      *
-     * @param query the query of the auction search 
+     * @param query the query of the auction search
      * @param pageable the pagination information
      * @return the result of the search
      */
     @GetMapping("/_search/auctions")
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<List<AuctionDTO>> searchAuctions(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Auctions for query {}", query);
         Page<AuctionDTO> page = auctionService.search(query, pageable);
