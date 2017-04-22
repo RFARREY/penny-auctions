@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { Credit } from './credit.model';
+import { Credit, Status } from './credit.model';
 import { DateUtils } from 'ng-jhipster';
 @Injectable()
 
@@ -20,8 +20,8 @@ export class CreditService {
         credit.timestamp = "2017-01-01T01:00";
         copy.timestamp = this.dateUtils.toDate(credit.timestamp);
         copy.price = 0.1;
-        copy.userId = 4;
-        copy.status = "paid";
+        copy.userId = 4; // this gets overwritten on the server anyway
+        copy.status = Status.paid;
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });

@@ -1,7 +1,7 @@
 
 // todo credits remove this
 
-const enum Status {
+export const enum Status {
     'paid',
     'pending'
 
