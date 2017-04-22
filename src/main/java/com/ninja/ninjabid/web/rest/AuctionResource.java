@@ -55,6 +55,7 @@ public class AuctionResource {
      */
     @PostMapping("/auctions")
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<AuctionDTO> createAuction(@Valid @RequestBody AuctionDTO auctionDTO) throws URISyntaxException {
         log.debug("REST request to save Auction : {}", auctionDTO);
         if (auctionDTO.getId() != null) {
@@ -77,6 +78,7 @@ public class AuctionResource {
      */
     @PutMapping("/auctions")
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<AuctionDTO> updateAuction(@Valid @RequestBody AuctionDTO auctionDTO) throws URISyntaxException {
         log.debug("REST request to update Auction : {}", auctionDTO);
         if (auctionDTO.getId() == null) {
@@ -125,6 +127,7 @@ public class AuctionResource {
      */
     @DeleteMapping("/auctions/{id}")
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<Void> deleteAuction(@PathVariable Long id) {
         log.debug("REST request to delete Auction : {}", id);
         auctionService.delete(id);
