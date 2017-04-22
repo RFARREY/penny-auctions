@@ -1,0 +1,10 @@
+{
+    "ninjabidApp": {
+        "AuctionStatus" : {
+            "null": "",
+            "live": "live",
+            "upcoming": "upcoming",
+            "closed": "closed"
+        }
+    }
+}

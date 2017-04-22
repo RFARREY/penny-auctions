@@ -1,0 +1,81 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "AuctionStatus",
+            "fieldValues": "live,upcoming,closed",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "item_name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "255"
+        },
+        {
+            "fieldName": "item_rrp",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": "0.1"
+        },
+        {
+            "fieldName": "item_picture",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "required",
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": "150000"
+        },
+        {
+            "fieldName": "item_overview",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "65535"
+        },
+        {
+            "fieldName": "max_price",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": "0.1"
+        },
+        {
+            "fieldName": "timer",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": "1"
+        },
+        {
+            "fieldName": "starting_at",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170422180258",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "auction",
+    "pagination": "infinite-scroll"
+}

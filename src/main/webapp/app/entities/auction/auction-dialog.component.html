@@ -1,0 +1,177 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAuctionLabel" jhiTranslate="ninjabidApp.auction.home.createOrEditLabel">Create or edit a Auction</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!auction.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="auction.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ninjabidApp.auction.status" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="auction.status" id="field_status"  required>
+                <option value="live" jhiTranslate="ninjabidApp.AuctionStatus.live">live</option>
+                <option value="upcoming" jhiTranslate="ninjabidApp.AuctionStatus.upcoming">upcoming</option>
+                <option value="closed" jhiTranslate="ninjabidApp.AuctionStatus.closed">closed</option>
+            </select>
+            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.status?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ninjabidApp.auction.item_name" for="field_item_name">Item Name</label>
+            <input type="text" class="form-control" name="item_name" id="field_item_name"
+                [(ngModel)]="auction.item_name"
+            required maxlength="255" />
+            <div [hidden]="!(editForm.controls.item_name?.dirty && editForm.controls.item_name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.item_name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.item_name?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 255 }">
+                   This field cannot be longer than 255 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ninjabidApp.auction.item_rrp" for="field_item_rrp">Item Rrp</label>
+            <input type="number" class="form-control" name="item_rrp" id="field_item_rrp"
+                [(ngModel)]="auction.item_rrp"
+            required min="0.1" />
+            <div [hidden]="!(editForm.controls.item_rrp?.dirty && editForm.controls.item_rrp?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.item_rrp?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.item_rrp?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0.1 }">
+                    This field should be at least 0.1.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.item_rrp?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ninjabidApp.auction.item_picture" for="field_item_picture">Item Picture</label>
+            <div>
+                <img [src]="'data:' + auction.item_pictureContentType + ';base64,' + auction.item_picture" style="max-height: 100px;" *ngIf="auction.item_picture" alt="auction image"/>
+                <div *ngIf="auction.item_picture" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{auction.item_pictureContentType}}, {{byteSize(auction.item_picture)}}</span>
+                    <button type="button" (click)="auction.item_picture=null;auction.item_pictureContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, auction, 'item_picture', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="item_picture" id="field_item_picture"
+                [(ngModel)]="auction.item_picture"
+            required maxbytes="150000" />
+            <input type="hidden" class="form-control" name="item_pictureContentType" id="field_item_pictureContentType"
+                [(ngModel)]="auction.item_pictureContentType" />
+            <div [hidden]="!(editForm.controls.item_picture?.dirty && editForm.controls.item_picture?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.item_picture?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.item_picture?.errors?.maxbytes" jhiTranslate="entity.validation.maxbytes" translateValues="{ max: 150000 }">
+                    This field cannot be more than 150000.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ninjabidApp.auction.item_overview" for="field_item_overview">Item Overview</label>
+            <input type="text" class="form-control" name="item_overview" id="field_item_overview"
+                [(ngModel)]="auction.item_overview"
+            required maxlength="65535" />
+            <div [hidden]="!(editForm.controls.item_overview?.dirty && editForm.controls.item_overview?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.item_overview?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.item_overview?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 65535 }">
+                   This field cannot be longer than 65535 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ninjabidApp.auction.max_price" for="field_max_price">Max Price</label>
+            <input type="number" class="form-control" name="max_price" id="field_max_price"
+                [(ngModel)]="auction.max_price"
+            required min="0.1" />
+            <div [hidden]="!(editForm.controls.max_price?.dirty && editForm.controls.max_price?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.max_price?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.max_price?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0.1 }">
+                    This field should be at least 0.1.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.max_price?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ninjabidApp.auction.timer" for="field_timer">Timer</label>
+            <input type="number" class="form-control" name="timer" id="field_timer"
+                [(ngModel)]="auction.timer"
+            required min="1" />
+            <div [hidden]="!(editForm.controls.timer?.dirty && editForm.controls.timer?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.timer?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.timer?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 1 }">
+                    This field should be at least 1.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.timer?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ninjabidApp.auction.starting_at" for="field_starting_at">Starting At</label>
+            <div class="d-flex">
+                <input id="field_starting_at" type="datetime-local" class="form-control" name="starting_at" [(ngModel)]="auction.starting_at"
+                required  />
+            </div>
+            <div [hidden]="!(editForm.controls.starting_at?.dirty && editForm.controls.starting_at?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.starting_at?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.starting_at?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

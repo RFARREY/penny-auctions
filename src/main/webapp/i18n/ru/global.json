@@ -9,6 +9,7 @@
             "entities": {
                 "main": "Сущности",
                 "credit": "Credit",
+                "auction": "Auction",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

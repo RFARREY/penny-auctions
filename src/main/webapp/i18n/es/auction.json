@@ -1,0 +1,29 @@
+{
+    "ninjabidApp": {
+        "auction" : {
+            "home": {
+                "title": "Auctions",
+                "createLabel": "Crear nuevo Auction",
+                "createOrEditLabel": "Crear o editar Auction",
+                "search": "Search for Auction"
+            },
+            "created": "Un nuevo Auction ha sido creado con el identificador {{ param }}",
+            "updated": "Un Auction ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Auction ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Auction {{ id }}?"
+            },
+            "detail": {
+                "title": "Auction"
+            },
+            "status": "Status",
+            "item_name": "Item Name",
+            "item_rrp": "Item Rrp",
+            "item_picture": "Item Picture",
+            "item_overview": "Item Overview",
+            "max_price": "Max Price",
+            "timer": "Timer",
+            "starting_at": "Starting At"
+        }
+    }
+}
