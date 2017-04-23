@@ -21,7 +21,6 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 
-// todo change default users pass
 
 @ComponentScan
 @EnableAutoConfiguration(exclude = {MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class})
