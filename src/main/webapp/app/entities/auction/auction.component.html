@@ -25,62 +25,54 @@
         </div>
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="auctions">
-        <table class="table table-striped">
-            <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="status"><span jhiTranslate="ninjabidApp.auction.status">Status</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="item_name"><span jhiTranslate="ninjabidApp.auction.item_name">Item Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="item_rrp"><span jhiTranslate="ninjabidApp.auction.item_rrp">Item Rrp</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="item_picture"><span jhiTranslate="ninjabidApp.auction.item_picture">Item Picture</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="max_price"><span jhiTranslate="ninjabidApp.auction.max_price">Max Price</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="timer"><span jhiTranslate="ninjabidApp.auction.timer">Timer</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="starting_at"><span jhiTranslate="ninjabidApp.auction.starting_at">Starting At</span> <span class="fa fa-sort"></span></th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
-            <tr *ngFor="let auction of auctions ;trackBy: trackId">
-                <td><a [routerLink]="['../auction', auction.id ]">{{auction.id}}</a></td>
-                <td jhiTranslate="{{'ninjabidApp.AuctionStatus.' + auction.status}}">{{auction.status}}</td>
-                <td><a [routerLink]="['../auction', auction.id ]">{{auction.item_name}}</a></td>
-                <td>{{auction.item_rrp | currency:'USD':true:'1.2-2' }}</td>
-                <td>
-                    <a *ngIf="auction.item_picture" (click)="openFile(auction.item_pictureContentType, auction.item_picture)">
-                        <img [src]="'data:' + auction.item_pictureContentType + ';base64,' + auction.item_picture" style="max-height: 30px;" alt="auction image"/>
-                    </a>
-                    <span *ngIf="auction.item_picture">{{auction.item_pictureContentType}}, {{byteSize(auction.item_picture)}}</span>
-                </td>
-                <td>{{auction.max_price | currency:'USD':true:'1.2-2' }}</td>
-                <td>{{auction.timer}}</td>
-                <td>{{auction.starting_at | date:'medium'}}</td>
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['../auction', auction.id ]"
-                                class="btn btn-info btn-sm">
-                            <span class="fa fa-eye"></span>
-                            <span class="hidden-md-down"></span>
-                        </button>
-                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'auction/'+ auction.id + '/edit'} }]"
-                                replaceUrl="true"
-                                class="btn btn-primary btn-sm">
-                            <span class="fa fa-pencil"></span>
-                            <span class="hidden-md-down"></span>
-                        </button>
-                        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'auction/'+ auction.id + '/delete'} }]"
-                                replaceUrl="true"
-                                class="btn btn-danger btn-sm">
-                            <span class="fa fa-remove"></span>
-                            <span class="hidden-md-down"></span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="container-fluid" *ngIf="auctions">
+        <div class="row" infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <div class="col-sm-4" *ngFor="let auction of auctions ;trackBy: trackId">
+                <div class="inner">
+                    <dl class="row-md jh-entity-details">
+                        <dt><a [routerLink]="['../auction', auction.id ]">{{auction.id}}</a></dt>
+
+                        <dt><span jhiTranslate="ninjabidApp.auction.status">Status</span></dt>
+                        <dd>
+                            <span jhiTranslate="{{'ninjabidApp.AuctionStatus.' + auction.status}}">{{auction.status}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="ninjabidApp.auction.item_name">Item Name</span></dt>
+                        <dd>
+                            <span>{{auction.item_name}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="ninjabidApp.auction.item_rrp">Item Rrp</span></dt>
+                        <dd>
+                            <span>{{auction.item_rrp | currency:'USD':true:'1.2-2' }}</span>
+                        </dd>
+                        <dt><span jhiTranslate="ninjabidApp.auction.item_picture">Item Picture</span></dt>
+                        <dd>
+                            <div *ngIf="auction.item_picture">
+                                <a (click)="openFile(auction.item_pictureContentType, auction.item_picture)">
+                                    <img [src]="'data:' + auction.item_pictureContentType + ';base64,' + auction.item_picture" style="max-width: 100%;" alt="auction image"/>
+                                </a>
+                                {{auction.item_pictureContentType}}, {{byteSize(auction.item_picture)}}
+                            </div>
+                        </dd>
+                        <dt><span jhiTranslate="ninjabidApp.auction.item_overview">Item Overview</span></dt>
+                        <dd>
+                            <span>{{auction.item_overview}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="ninjabidApp.auction.max_price">Max Price</span></dt>
+                        <dd>
+                            <span>{{auction.max_price | currency:'USD':true:'1.2-2' }}</span>
+                        </dd>
+                        <dt><span jhiTranslate="ninjabidApp.auction.timer">Timer</span></dt>
+                        <dd>
+                            <span>{{auction.timer}}</span>
+                        </dd>
+                        <dt><span jhiTranslate="ninjabidApp.auction.starting_at">Starting At</span></dt>
+                        <dd>
+                            <span>{{auction.starting_at | date:'medium'}}</span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
