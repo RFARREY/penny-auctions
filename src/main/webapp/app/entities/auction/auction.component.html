@@ -43,14 +43,14 @@
             <tr *ngFor="let auction of auctions ;trackBy: trackId">
                 <td jhiTranslate="{{'ninjabidApp.AuctionStatus.' + auction.status}}">{{auction.status}}</td>
                 <td><a [routerLink]="['../auction', auction.id ]">{{auction.item_name}}</a></td>
-                <td>{{auction.item_rrp}}</td>
+                <td>{{auction.item_rrp | currency:'USD':true:'1.2-2' }}</td>
                 <td>
                     <a *ngIf="auction.item_picture" (click)="openFile(auction.item_pictureContentType, auction.item_picture)">
                         <img [src]="'data:' + auction.item_pictureContentType + ';base64,' + auction.item_picture" style="max-height: 30px;" alt="auction image"/>
                     </a>
                     <span *ngIf="auction.item_picture">{{auction.item_pictureContentType}}, {{byteSize(auction.item_picture)}}</span>
                 </td>
-                <td>{{auction.max_price}}</td>
+                <td>{{auction.max_price | currency:'USD':true:'1.2-2' }}</td>
                 <td>{{auction.timer}}</td>
                 <td>{{auction.starting_at | date:'medium'}}</td>
                 <td class="text-right">

@@ -14,7 +14,7 @@
         </dd>
         <dt><span jhiTranslate="ninjabidApp.auction.item_rrp">Item Rrp</span></dt>
         <dd>
-            <span>{{auction.item_rrp}}</span>
+            <span>{{auction.item_rrp | currency:'USD':true:'1.2-2' }}</span>
         </dd>
         <dt><span jhiTranslate="ninjabidApp.auction.item_picture">Item Picture</span></dt>
         <dd>
@@ -31,7 +31,7 @@
         </dd>
         <dt><span jhiTranslate="ninjabidApp.auction.max_price">Max Price</span></dt>
         <dd>
-            <span>{{auction.max_price}}</span>
+            <span>{{auction.max_price | currency:'USD':true:'1.2-2' }}</span>
         </dd>
         <dt><span jhiTranslate="ninjabidApp.auction.timer">Timer</span></dt>
         <dd>
@@ -49,7 +49,7 @@
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
-    <button type="button"
+    <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
             [routerLink]="['/', { outlets: { popup: 'auction/'+ auction.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">
