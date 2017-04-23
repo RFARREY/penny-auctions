@@ -293,3 +293,12 @@ Social Buttons
 h1.page-header {
     padding-bottom: 20px;
 }
+
+#auction-blocks .inner.auction-list-block {
+    background: #f0f0f0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    float: none;
+    margin: 15px auto 15px auto;
+}
