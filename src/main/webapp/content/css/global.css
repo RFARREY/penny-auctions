@@ -357,3 +357,11 @@ button {
 .settings-form {
     max-width: 388px;
 }
+
+nav a.nav-link span{
+    font-weight: 300;
+}
+
+a.nav-link i {
+    display: none;
+}
