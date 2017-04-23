@@ -29,6 +29,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="status"><span jhiTranslate="ninjabidApp.auction.status">Status</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="item_name"><span jhiTranslate="ninjabidApp.auction.item_name">Item Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="item_rrp"><span jhiTranslate="ninjabidApp.auction.item_rrp">Item Rrp</span> <span class="fa fa-sort"></span></th>
@@ -41,6 +42,7 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let auction of auctions ;trackBy: trackId">
+                <td><a [routerLink]="['../auction', auction.id ]">{{auction.id}}</a></td>
                 <td jhiTranslate="{{'ninjabidApp.AuctionStatus.' + auction.status}}">{{auction.status}}</td>
                 <td><a [routerLink]="['../auction', auction.id ]">{{auction.item_name}}</a></td>
                 <td>{{auction.item_rrp | currency:'USD':true:'1.2-2' }}</td>
