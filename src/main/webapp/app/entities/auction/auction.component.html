@@ -1,6 +1,5 @@
 <div>
     <h2>
-        <span jhiTranslate="ninjabidApp.auction.home.title">Auctions</span>
         <button *jhiHasAnyAuthority="'ROLE_ADMIN'" class="btn btn-primary float-right create-auction" [routerLink]="['/', { outlets: { popup: ['auction-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="ninjabidApp.auction.home.createLabel">
@@ -27,9 +26,33 @@
     <br/>
     <div class="container-fluid" *ngIf="auctions" id="auction-blocks">
         <div class="row" infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
-            <div class="col-sm-4" *ngFor="let auction of auctions ;trackBy: trackId">
+            <div class="col-sm-5 col-md-5 col-lg-4 col-xl-4 auction-col " *ngFor="let auction of auctions ;trackBy: trackId">
                 <div class="inner container-fluid jh-entity-details auction-list-block">
-                     <h4>{{auction.item_name}}</h4>
+                    <h4 class="item-title">
+                        <a [routerLink]="['../auction', auction.id ]">{{auction.item_name}}</a>
+                    </h4>
+                    <p class="small" jhiTranslate="ninjabidApp.auction.item_rrp" translateValues="{item_rpp: '{{auction.item_rrp | currency:'USD':true:'1.2-2' }}'}">
+                        RPP {{auction.item_rrp | currency:'USD':true:'1.2-2' }}
+                    </p>
+                    <a *ngIf="auction.item_picture" [routerLink]="['../auction', auction.id ]">
+                        <img [src]="'data:' + auction.item_pictureContentType + ';base64,' + auction.item_picture"  class="auction-block-img" alt="auction image"/>
+                    </a>
+                    <h6 class="label-info text-left max-auction-price" jhiTranslate="ninjabidApp.auction.max_price" translateValues="{max: '{{auction.max_price | currency:'USD':true:'1.2-2' }}'}">
+                        Max {{auction.max_price | currency:'USD':true:'1.2-2' }}
+                    </h6>
+                    <div class="auction-action-bar">
+                        <h4>
+                            <span class="left">
+                                <small jhiTranslate="ninjabidApp.auction.auction_price">Auction Price</small><br/>
+                                <span>$0.53</span>
+                            </span>
+                            <span class="timer">
+                                <button type="button" class="btn btn-primary bid-now" jhiTranslate="ninjabidApp.auction.bid_now">Bid Now</button>
+                                <small class="username">evertzapata</small><br/>
+                                <span class="timer-time">00:00:15</span>
+                            </span>
+                        </h4>
+                    </div>
                     <div class="btn-group flex-btn-group-container">
                         <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit"
                                 [routerLink]="['../auction', auction.id ]"

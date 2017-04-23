@@ -3,27 +3,29 @@
         "auction" : {
             "home": {
                 "title": "Auctions",
-                "createLabel": "Создать новый Auction",
-                "createOrEditLabel": "Создать или отредактировать Auction",
-                "search": "Найти Auction"
+                "createLabel": "Create a new Auction",
+                "createOrEditLabel": "Create or edit a Auction",
+                "search": "Search for Auction"
             },
-            "created": "Новый Auction создан с идентификатором {{ param }}",
-            "updated": "Auction обновлен с идентификатором {{ param }}",
-            "deleted": "Auction удален с идентификатором {{ param }}",
+            "created": "A new Auction is created with identifier {{ param }}",
+            "updated": "A Auction is updated with identifier {{ param }}",
+            "deleted": "A Auction is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Вы уверены что хотите удалить Auction {{ id }}?"
+                "question": "Are you sure you want to delete Auction {{ id }}?"
             },
             "detail": {
                 "title": "Auction"
             },
             "status": "Status",
             "item_name": "Item Name",
-            "item_rrp": "Item RRP",
+            "item_rrp": "RPP {{item_rpp}}",
             "item_picture": "Item Picture",
             "item_overview": "Item Overview",
-            "max_price": "Max Price",
+            "max_price": "Max {{max}}",
             "timer": "Timer",
-            "starting_at": "Starting At"
+            "starting_at": "Starting At",
+            "auction_price": "Auction Price",
+            "bid_now": "Bid Now"
         }
     }
 }

@@ -295,10 +295,61 @@ h1.page-header {
 }
 
 #auction-blocks .inner.auction-list-block {
-    background: #f0f0f0;
+    background: #f5f5f5;
     padding-top: 15px;
     padding-bottom: 15px;
     text-align: center;
     float: none;
     margin: 15px auto 15px auto;
+}
+
+#auction-blocks .auction-block-img {
+    max-width: 100%;
+    max-height:288px;
+}
+
+.auction-action-bar {
+    width: 100%;
+    overflow: hidden;
+    float: none;
+}
+.auction-action-bar small {
+    font-size: 50%;
+}
+
+.auction-action-bar .left {
+    float: left;
+    text-align: left;
+}
+
+.auction-action-bar .timer{
+    float: right;
+    position: relative;
+    padding-left: 105px;
+}
+.auction-action-bar .bid-now {
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+ }
+
+.auction-list-block .max-auction-price{
+    position: absolute;
+    margin-top: -20px;
+    background: #ebebeb;
+    padding: 5px;
+    margin-left: -5px;
+}
+
+#auction-blocks .auction-col {
+    min-width: 328px;
+}
+button {
+    cursor: pointer;
+}
+
+#auction-blocks .auction-col .item-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
