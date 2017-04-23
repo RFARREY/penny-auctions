@@ -36,7 +36,7 @@ export const auctionPopupRoute: Routes = [
     path: 'auction-new',
     component: AuctionPopupComponent,
     data: {
-        authorities: ['ROLE_USER'],
+        authorities: ['ROLE_ADMIN'],
         pageTitle: 'ninjabidApp.auction.home.title'
     },
     canActivate: [UserRouteAccessService],
@@ -46,7 +46,7 @@ export const auctionPopupRoute: Routes = [
     path: 'auction/:id/edit',
     component: AuctionPopupComponent,
     data: {
-        authorities: ['ROLE_USER'],
+        authorities: ['ROLE_ADMIN'],
         pageTitle: 'ninjabidApp.auction.home.title'
     },
     canActivate: [UserRouteAccessService],
@@ -56,7 +56,7 @@ export const auctionPopupRoute: Routes = [
     path: 'auction/:id/delete',
     component: AuctionDeletePopupComponent,
     data: {
-        authorities: ['ROLE_USER'],
+        authorities: ['ROLE_ADMIN'],
         pageTitle: 'ninjabidApp.auction.home.title'
     },
     canActivate: [UserRouteAccessService],
