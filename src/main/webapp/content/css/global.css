@@ -353,3 +353,7 @@ button {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.settings-form {
+    max-width: 388px;
+}
