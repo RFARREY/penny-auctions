@@ -316,7 +316,22 @@ h1.page-header {
     width: 100%;
     overflow: hidden;
     float: none;
+    margin: auto;
+}
+
+.auction-action-bar h4 {
+    overflow: hidden;
+}
+
+.auction-action-bar.single{
     max-width: 500px;
+}
+.under-bar-wrap.single {
+    max-width: 500px;
+    width: 100%;
+    overflow: hidden;
+    float: none;
+    margin: auto;
 }
 .auction-action-bar small {
     font-size: 50%;
@@ -370,4 +385,17 @@ nav a.nav-link span{
 
 a.nav-link i {
     display: none;
+}
+
+#bidding-history-wrap th{
+    border-top: none;
+}
+
+#extra-info-wrap thead th{
+    font-weight: 300;
+    border-bottom: 1px solid #eceeef;
+}
+
+#prod-overview-wrap {
+    margin-top: 15px;
 }

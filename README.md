@@ -7,3 +7,5 @@
  - add notice on auctions entity with max item title 32 chars recommandation
  - add better redirect to auction
  - replace help with how it works, add faq page.
+ - sort the auctions
+ - add auction starting at if status upcoming
