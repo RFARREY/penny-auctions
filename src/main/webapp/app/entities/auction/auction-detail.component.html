@@ -1,58 +1,50 @@
 
 <div *ngIf="auction">
-    <h2><span jhiTranslate="ninjabidApp.auction.detail.title">Auction</span> {{auction.id}}</h2>
+    <h2>{{auction.item_name}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="ninjabidApp.auction.status">Status</span></dt>
-        <dd>
-            <span jhiTranslate="{{'ninjabidApp.AuctionStatus.' + auction.status}}">{{auction.status}}</span>
-        </dd>
-        <dt><span jhiTranslate="ninjabidApp.auction.item_name">Item Name</span></dt>
-        <dd>
-            <span>{{auction.item_name}}</span>
-        </dd>
-        <dt><span jhiTranslate="ninjabidApp.auction.item_rrp">Item Rrp</span></dt>
-        <dd>
-            <span>{{auction.item_rrp | currency:'USD':true:'1.2-2' }}</span>
-        </dd>
-        <dt><span jhiTranslate="ninjabidApp.auction.item_picture">Item Picture</span></dt>
-        <dd>
-            <div *ngIf="auction.item_picture">
-                <a (click)="openFile(auction.item_pictureContentType, auction.item_picture)">
-                    <img [src]="'data:' + auction.item_pictureContentType + ';base64,' + auction.item_picture" style="max-width: 100%;" alt="auction image"/>
-                </a>
-                {{auction.item_pictureContentType}}, {{byteSize(auction.item_picture)}}
+    <div class="container-fluid">
+        <div class="row">
+            <a (click)="previousState()" >
+                <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </a>
+            <a *jhiHasAnyAuthority="'ROLE_ADMIN'" style="margin-left: 15px"
+                    [routerLink]="['/', { outlets: { popup: 'auction/'+ auction.id + '/edit'} }]"
+                    replaceUrl="true">
+                <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="container-fluid jh-entity-details" id="auction-block">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 single-auction-col">
+                <div class="inner container-fluid auction-item-details">
+                    <div *ngIf="auction.item_picture" class="auction-block-img-wrap">
+                        <img [src]="'data:' + auction.item_pictureContentType + ';base64,' + auction.item_picture" class="auction-block-img" alt="auction image"/>
+                    </div>
+                </div>
             </div>
-        </dd>
-        <dt><span jhiTranslate="ninjabidApp.auction.item_overview">Item Overview</span></dt>
-        <dd>
-            <span>{{auction.item_overview}}</span>
-        </dd>
-        <dt><span jhiTranslate="ninjabidApp.auction.max_price">Max Price</span></dt>
-        <dd>
-            <span>{{auction.max_price | currency:'USD':true:'1.2-2' }}</span>
-        </dd>
-        <dt><span jhiTranslate="ninjabidApp.auction.timer">Timer</span></dt>
-        <dd>
-            <span>{{auction.timer}}</span>
-        </dd>
-        <dt><span jhiTranslate="ninjabidApp.auction.starting_at">Starting At</span></dt>
-        <dd>
-            <span>{{auction.starting_at | date:'medium'}}</span>
-        </dd>
-    </dl>
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 single-auction-col">
+                <div class="inner container-fluid auction-item-details">
 
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-    </button>
+                </div>
+            </div>
+        </div>
 
-    <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
-            [routerLink]="['/', { outlets: { popup: 'auction/'+ auction.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 single-auction-overview">
+                <div class="inner container-fluid auction-item-details">
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
 </div>

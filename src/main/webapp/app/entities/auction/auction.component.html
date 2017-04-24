@@ -1,6 +1,7 @@
 <div>
     <h2>
-        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" class="btn btn-primary float-right create-auction" [routerLink]="['/', { outlets: { popup: ['auction-new'] } }]">
+        <span jhiTranslate="ninjabidApp.auction.home.title">Auctions</span>
+        <button class="btn btn-primary float-right create-auction" [routerLink]="['/', { outlets: { popup: ['auction-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="ninjabidApp.auction.home.createLabel">
             Create new Auction
@@ -34,9 +35,11 @@
                     <p class="small" jhiTranslate="ninjabidApp.auction.item_rrp" translateValues="{item_rpp: '{{auction.item_rrp | currency:'USD':true:'1.2-2' }}'}">
                         RPP {{auction.item_rrp | currency:'USD':true:'1.2-2' }}
                     </p>
-                    <a *ngIf="auction.item_picture" [routerLink]="['../auction', auction.id ]">
-                        <img [src]="'data:' + auction.item_pictureContentType + ';base64,' + auction.item_picture"  class="auction-block-img" alt="auction image"/>
-                    </a>
+                    <div class="auction-block-img-wrap">
+                        <a *ngIf="auction.item_picture" [routerLink]="['../auction', auction.id ]">
+                            <img [src]="'data:' + auction.item_pictureContentType + ';base64,' + auction.item_picture"  class="auction-block-img" alt="auction image"/>
+                        </a>
+                    </div>
                     <h6 class="label-info text-left max-auction-price" jhiTranslate="ninjabidApp.auction.max_price" translateValues="{max: '{{auction.max_price | currency:'USD':true:'1.2-2' }}'}">
                         Max {{auction.max_price | currency:'USD':true:'1.2-2' }}
                     </h6>
