@@ -304,15 +304,11 @@ h1.page-header {
 }
 
 #auction-blocks .auction-block-img {
-    height:288px;
-    width:288px;
     max-width: 100%;
     max-height: 100%;
 }
 
 #auction-block .auction-block-img {
-    height:512px;
-    width:512px;
     max-width: 100%;
     max-height: 100%;
 }
@@ -320,6 +316,7 @@ h1.page-header {
     width: 100%;
     overflow: hidden;
     float: none;
+    max-width: 500px;
 }
 .auction-action-bar small {
     font-size: 50%;
@@ -333,11 +330,12 @@ h1.page-header {
 .auction-action-bar .timer{
     float: right;
     position: relative;
-    padding-left: 105px;
+    padding-left: 110px;
+    text-align: center;
 }
 .auction-action-bar .bid-now {
     position: absolute;
-    left: 0;
+    left: 5px;
     bottom: 2px;
  }
 
