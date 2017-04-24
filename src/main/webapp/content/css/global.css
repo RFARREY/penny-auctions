@@ -305,7 +305,9 @@ h1.page-header {
 
 #auction-blocks .auction-block-img {
     max-width: 100%;
-    max-height:288px;
+    max-height: 100%;
+    height:288px;
+    width:288px;
 }
 
 .auction-action-bar {
