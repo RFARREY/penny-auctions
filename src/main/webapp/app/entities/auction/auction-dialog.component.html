@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ninjabidApp.auction.item_rrp" for="field_item_rrp">Item Rrp</label>
+            <label class="form-control-label" jhiTranslate="ninjabidApp.auction.item_rrp_admin" for="field_item_rrp">Recommended Retail Price (RRP)</label>
             <input type="number" class="form-control" name="item_rrp" id="field_item_rrp"
                 [(ngModel)]="auction.item_rrp"
             required min="0.1" />
@@ -78,7 +78,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ninjabidApp.auction.max_price" for="field_max_price">Max Price</label>
+            <label class="form-control-label" jhiTranslate="ninjabidApp.auction.max_price_admin" for="field_max_price">Max Price</label>
             <input type="number" class="form-control" name="max_price" id="field_max_price"
                 [(ngModel)]="auction.max_price"
             required min="0.1" />
