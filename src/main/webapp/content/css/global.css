@@ -321,6 +321,7 @@ h1.page-header {
 
 .auction-action-bar h4 {
     overflow: hidden;
+    margin-bottom: 0;
 }
 
 .auction-action-bar.single{

@@ -47,12 +47,18 @@
                         <table class="table" id="extra-info-wrap">
                             <thead>
                             <tr>
-                                <th><span>RPP</span></th>
-                                <th><span>RPP</span> </th>
+                                <th>
+                                    <span jhiTranslate="ninjabidApp.auction.rrp">RPP</span>
+                                </th>
+                                <th>
+                                    <span>{{auction.item_rrp | currency:'USD':true:'1.2-2' }}</span>
+                                </th>
                             </tr>
                             <tr>
-                                <th><span>Max Price</span></th>
-                                <th><span>Max Price</span> </th>
+                                <th>
+                                    <span jhiTranslate="ninjabidApp.auction.maxp">Max Price</span>
+                                </th>
+                                <th><span>{{auction.max_price | currency:'USD':true:'1.2-2' }}</span> </th>
                             </tr>
                             </thead>
                         </table>
@@ -62,19 +68,23 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th><span>Bidder</span></th>
-                                <th><span>Amount</span> </th>
+                                <th>
+                                    <span jhiTranslate="ninjabidApp.auction.bidder">Bidder</span>
+                                </th>
+                                <th>
+                                    <span jhiTranslate="ninjabidApp.auction.amount">Amount</span>
+                                </th>
 
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>RPP</td>
-                                <td>RPP</td>
+                                <td>evertzapata</td>
+                                <td>{{auction.item_rrp | currency:'USD':true:'1.2-2' }}</td>
                             </tr>
                             <tr>
-                                <td>Max Price</td>
-                                <td>RPP</td>
+                                <td>evertzapata</td>
+                                <td>{{auction.item_rrp | currency:'USD':true:'1.2-2' }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -86,16 +96,12 @@
         <div class="row" id="prod-overview-wrap">
             <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9 single-auction-overview">
                 <div  class="inner container-fluid auction-item-details">
-                    <h2>Item Overview</h2>
+                    <h2 jhiTranslate="ninjabidApp.auction.bidder">Item Overview</h2>
                     <div [innerHTML]="auction.item_overview">
                     </div>
                 </div>
             </div>
         </div>
-
-
-
     </div>
-
 
 </div>
